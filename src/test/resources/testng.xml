@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PO_Testing_Suite" verbose="1">
+
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+
+    <test name="BaseUrlTest">
+        <parameter name="BaseUrl" value="https://auto.ria.com/"/>
+        <classes>
+            <class name="TestOptions.TestAnnotation"/>
+        </classes>
+    </test>
+
+    <test name="Login">
+        <parameter name="email_param" value="test.for.ria@gmail.com"/>
+        <parameter name="pass_param" value="test.for.ria123"/>
+        <classes>
+            <class name="TestClases.TestClassForRia"/>
+        </classes>
+    </test>
+
+</suite>
+
