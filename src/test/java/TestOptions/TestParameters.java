@@ -16,6 +16,6 @@ public class TestParameters {
 
     @DataProvider(name = "DataPrice")
     public static Object[][] price() {
-        return new Object[][]{{"40000", "70000"}, {"50000", "80000"}, {"60000", "90000"}};
+        return new Object[][]{{"35000", "70000"}, {"50000", "80000"}, {"60000", "90000"}};
     }
 }

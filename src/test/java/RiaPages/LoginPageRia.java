@@ -30,7 +30,7 @@ public class LoginPageRia extends DriverInit {
 
     public LoginPageRia checkForEnabledGoogle() {
         log.info("checkForEnabledGoogle");
-        oneLocClick(afterLoginField);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(afterLoginField));
         return this;
     }
 

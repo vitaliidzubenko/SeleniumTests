@@ -153,8 +153,8 @@ public class MainPageRia extends DriverInit {
         return this;
     }
 
-    public MainPageRia swithcToNewWindow() {
-        log.info("swithcToNewWindow");
+    public MainPageRia switchToNewWindow() {
+        log.info("switchToNewWindow");
         String parentWindow = getDriver().getWindowHandle();
         Set<String> handles = getDriver().getWindowHandles();
         for (String windowHandle : handles) {

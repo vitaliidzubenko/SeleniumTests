@@ -102,7 +102,7 @@ public class TestClassForRia extends TestAnnotation {
     public void seventhTestCase() {
         mainPage
                 .clickQuestionsFooter()
-                .swithcToNewWindow();
+                .switchToNewWindow();
         QuestionsPage questPage = new QuestionsPage()
                 .enterQuestion()
                 .clickLink()
@@ -130,7 +130,7 @@ public class TestClassForRia extends TestAnnotation {
 
     @Description("This test is checking car from abroad search results")
     @Test(priority = 9)
-    public void ninethTestCase() throws InterruptedException {
+    public void ninthTestCase() {
         mainPage.clickAbroadCar();
         DetailResPageRia detResPage = new DetailResPageRia()
                 .clickLithuania()

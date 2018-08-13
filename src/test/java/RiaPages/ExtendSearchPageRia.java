@@ -98,7 +98,7 @@ public class ExtendSearchPageRia extends DriverInit {
 
     public ExtendSearchPageRia modelInfo() {
         log.info("modelInfo");
-        oneLocClick(allPageContent);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(allPageContent));
         return this;
     }
 

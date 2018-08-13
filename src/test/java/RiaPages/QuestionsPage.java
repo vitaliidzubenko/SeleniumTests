@@ -25,7 +25,7 @@ public class QuestionsPage extends DriverInit {
 
     public QuestionsPage viewLink() {
         log.info("viewLink");
-        oneLocClick(answerContent);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(answerContent));
         return this;
     }
 
