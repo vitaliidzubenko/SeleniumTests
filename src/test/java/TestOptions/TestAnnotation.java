@@ -1,7 +1,12 @@
 package TestOptions;
 
+import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -9,8 +14,8 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public class TestAnnotation extends DriverInit {
-    protected final Logger log = LogManager.getLogger(TestAnnotation.class);
-    protected final String MainUrl = "https://auto.ria.com/";
+    private final Logger log = LogManager.getLogger(TestAnnotation.class);
+    private final String MainUrl = "https://auto.ria.com/";
 
     @BeforeMethod
     public void setUp() {
@@ -25,11 +30,14 @@ public class TestAnnotation extends DriverInit {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
         log.info("Closing Browser");
         System.out.println("==================================================================================");
         System.out.println("******************************====FINISH_OF_TEST===*******************************");
         System.out.println("==================================================================================");
+        if (!result.isSuccess()) {
+            saveScreenshot(getDriver());
+        }
     }
 
     @AfterTest
@@ -41,4 +49,10 @@ public class TestAnnotation extends DriverInit {
         System.out.println("******************************====END_OF_SESSION===*******************************");
         System.out.println("==================================================================================");
     }
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    private byte[] saveScreenshot(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
 }

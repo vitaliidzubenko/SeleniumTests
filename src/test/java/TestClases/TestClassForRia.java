@@ -3,9 +3,13 @@ package TestClases;
 import RiaPages.*;
 import TestOptions.TestAnnotation;
 import TestOptions.TestParameters;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class TestClassForRia extends TestAnnotation {
     private MainPageRia mainPage = new MainPageRia();
@@ -150,5 +154,4 @@ public class TestClassForRia extends TestAnnotation {
                 .fillYearstruck();
         Assert.assertFalse((getDriver().findElement(extSearch.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
-
 }
