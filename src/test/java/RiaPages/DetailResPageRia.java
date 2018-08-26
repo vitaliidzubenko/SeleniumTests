@@ -9,9 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DetailResPageRia extends DriverInit {
     private final Logger log = LogManager.getLogger(DetailResPageRia.class);
     private final By contentDisplayed = By.xpath("//div[@class = 'app-content']");
+    private final By propose = By.xpath("//section[@class = 'view-auto_info-seller ']");
     private final By firstResultBuldozer = By.xpath("//div[@class = 'item ticket-title']");
-    private final By proposeContent = By.xpath("//a[@class = 'na-card-item']");
-    private final By abroadLithuania = By.xpath("//section[@id = 'autoinerCountryDefault']//a[@title = 'Авто из Латвии ']");
+    private final By proposeLink = By.xpath("//a[@class = 'na-card-item '][1]");
+    private final By abroadLithuania = By.xpath("//div[@class = 'seo-catalog-main']//a[@title = 'Авто из Литвы ']");
     private final By vehicleType = By.xpath("//select[@name = 'vehicleClass_id']");
     private final By passengerType = By.xpath("//select[@name = 'vehicleClass_id']//option[2]");
     private final By brandOfCar = By.xpath("//select[@name = 'make_id']");
@@ -24,8 +25,8 @@ public class DetailResPageRia extends DriverInit {
         return contentDisplayed;
     }
 
-    public By getProposeContent() {
-        return proposeContent;
+    public By getPropose() {
+        return propose;
     }
 
     public DetailResPageRia detailedInfoElement() {
@@ -56,7 +57,7 @@ public class DetailResPageRia extends DriverInit {
 
     public DetailResPageRia proposeChevy() {
         log.info("proposeChevrolet");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(proposeContent));
+        oneLocClick(proposeLink);
         return this;
     }
 

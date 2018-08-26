@@ -3,13 +3,9 @@ package TestClases;
 import RiaPages.*;
 import TestOptions.TestAnnotation;
 import TestOptions.TestParameters;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class TestClassForRia extends TestAnnotation {
     private MainPageRia mainPage = new MainPageRia();
@@ -19,7 +15,8 @@ public class TestClassForRia extends TestAnnotation {
     @Test(priority = 1,
             dataProvider = "CredentialsForLogin", dataProviderClass = TestParameters.class)
     public void firstTestCase(String email, String password) {
-        mainPage.clickCabinet();
+        mainPage.clickCabinet()
+                .closeNotification();
         LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia
                 .clickRegister()
@@ -37,7 +34,8 @@ public class TestClassForRia extends TestAnnotation {
                 .fillModel()
                 .fillRegion()
                 .fillYear()
-                .clickSubmitButton();
+                .clickSubmitButton()
+                .closeNotification();
         ResPageRia resPageRia = new ResPageRia();
         resPageRia.resultSearchHomePage();
         DetailResPageRia detResPage = new DetailResPageRia().detailedInfoElement();
@@ -49,7 +47,8 @@ public class TestClassForRia extends TestAnnotation {
             dataProvider = "DataYear", dataProviderClass = TestParameters.class)
     public void thirdTestCase(String yearF, String yearT) {
         ResPageRia resPageRia = new ResPageRia();
-        mainPage.clickExtendedSearch();
+        mainPage.clickExtendedSearch()
+                .closeNotification();
         extSearch
                 .fillBodyType()
                 .fillBrand()
@@ -65,7 +64,8 @@ public class TestClassForRia extends TestAnnotation {
     @Description("This test is checking new auto results/ Chevrolet Suburban")
     @Test(priority = 4)
     public void fourthTestCase() {
-        mainPage.clickNewCarsHeader();
+        mainPage.clickNewCarsHeader()
+                .closeNotification();
         extSearch
                 .clickChevrolet()
                 .clickSuburban()
@@ -73,7 +73,7 @@ public class TestClassForRia extends TestAnnotation {
                 .offersForModel()
                 .modelInfo();
         DetailResPageRia detResPage = new DetailResPageRia().proposeChevy();
-        Assert.assertTrue((getDriver().findElement(detResPage.getProposeContent()).isDisplayed()), "***Verification Failed!***");
+        Assert.assertTrue((getDriver().findElement(detResPage.getPropose()).isDisplayed()), "***Verification Failed!***");
     }
 
     @Description("This test is checking special vehicle results with parameters")
@@ -83,7 +83,8 @@ public class TestClassForRia extends TestAnnotation {
         mainPage
                 .fillRegion()
                 .clickSpecialVehicle()
-                .clickBuldozer();
+                .clickBuldozer()
+                .closeNotification();
         extSearch
                 .priceBuldozer(priceF, priceT);
         DetailResPageRia detResPage = new DetailResPageRia().detailsBuldozer();
@@ -93,7 +94,8 @@ public class TestClassForRia extends TestAnnotation {
     @Description("This test is checking service station page, using Home Page headers menu")
     @Test(priority = 6)
     public void sixthTestCase() {
-        mainPage.hoverClickCars();
+        mainPage.hoverClickCars()
+                .closeNotification();
         CTOpage ctoPage = new CTOpage()
                 .chooseCity()
                 .chooseOfficial()
@@ -106,7 +108,8 @@ public class TestClassForRia extends TestAnnotation {
     public void seventhTestCase() {
         mainPage
                 .clickQuestionsFooter()
-                .switchToNewWindow();
+                .switchToNewWindow()
+                .closeNotification();
         QuestionsPage questPage = new QuestionsPage()
                 .enterQuestion()
                 .clickLink()
@@ -135,9 +138,10 @@ public class TestClassForRia extends TestAnnotation {
     @Description("This test is checking car from abroad search results")
     @Test(priority = 9)
     public void ninthTestCase() {
-        mainPage.clickAbroadCar();
-        DetailResPageRia detResPage = new DetailResPageRia()
-                .clickLithuania()
+        DetailResPageRia detResPage = new DetailResPageRia();
+        mainPage.clickAbroadCar()
+                .closeNotification();
+        detResPage.clickLithuania()
                 .clickVehicleType()
                 .clickBrandType()
                 .clickModelOfCar()
@@ -148,7 +152,8 @@ public class TestClassForRia extends TestAnnotation {
     @Description("This test is checking detailed search from previously entered parameter")
     @Test(priority = 10)
     public void tenthTestCase() {
-        mainPage.clickTruck();
+        mainPage.clickTruck()
+                .closeNotification();
         extSearch
                 .fillBrandTruck()
                 .fillYearstruck();

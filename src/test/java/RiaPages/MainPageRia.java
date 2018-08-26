@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -38,6 +39,17 @@ public class MainPageRia extends DriverInit {
     private final By abroadCar = By.xpath("//section[@id = 'recomended-section']//a[text() = 'Поиск авто из-за рубежа']");
     private final By typeTruck = By.xpath("//section[@class = 'box-panel line']//span[text() = 'Грузовики']");
     private final By truckTypeTank = By.xpath("//nav[@class = 'catalog-referrals open-mobile']//a[text() = 'Цистерна']");
+    private final By notification = By.xpath("//div[@class = 'c-notifier']//label[@class = 'c-notifier-btn']");
+
+    public boolean closeNotification() {
+        try {
+            getWait().until(ExpectedConditions.elementToBeClickable(notification)).click();
+            return true;
+        } catch (TimeoutException e) {
+            System.out.println("There is no Notification window");
+            return false;
+        }
+    }
 
     public MainPageRia clickCabinet() {
         log.info("clickCabinet");
